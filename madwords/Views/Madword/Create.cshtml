@@ -57,37 +57,54 @@
 @section Scripts
 {
     <script>
+        
+        var templates = [];
+        
+        fetch('https://localhost:44380/api/MadwordTemplate')
+            .then(response => {
+                const contentType = response.headers.get('content-type');
+                if (!contentType || !contentType.includes('application/json')) {
+                    throw new TypeError("No JSON");
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log(data);
+                templates = data;
+                var templateNumber = Math.floor((Math.random() * templates.length));
+                var templateText = templates[templateNumber].madwordTemplateText;
+                generateTemplate(templateText);
+            })
+            .catch(error => console.error(error));
+        
         var stories = {
             "story": [
                 {
-                    "text": "Somebody once told me the * is gonna * me, I ain't the * * in the *, She was looking kind of * with her * and her * in the shape of a * on her *",
-                    "blanks": ["Noun", "Verb", "Adjective", "Noun", "Place", "Adjective", "Noun", "Noun", "Letter", "Noun"]
-                },
-                {
-                    "text": `* the *-nosed * had a very * nose, And if you ever * it, You would even say it glows, All of the other * used to * and call him *, They never let * * * in any * games`,
-                    "blanks": ["Name", "Adjective", "Noun", "Adjective", "Verb", "Noun", "Verb", "Noun", "Adjective", "Name", "Verb", "Adjective"]
-                },
-                {
-                    "text": `The majestic * has roamed the forests of * for thousands of years. Today, it wanders in search of *. It must find * to survive the harsh *.`,
-                    "blanks": ["Animal", "Country", "Noun", "Noun", "Season"]
-                },
-                {
-                    "text": `He was a *, She was a *. Can I make it any more obvious? He was a *, She did *. What more can I say? He wanted *, She'd never tell. Secretly she * * as well. But all of her *, Stuck up their *, They had a problem with his * *.`,
-                    "blanks": ["Noun", "Noun", "Noun", "Sport", "Noun", "Verb (past tense)", "Noun", "Noun", "Noun", "Adjective", "Noun (plural)"]
-                },
-                {
-                    "text": `All the * *, true care truth brings. I'll * one *. Your *, * *. Always I know, you'll be at my *. *, *, *`,
-                    "blanks": ["Adjective", "Noun (plural)", "Verb", "Noun", "Noun", "Adjective", "Noun", "Place", "Verb (ending w/ -ing)", "Verb (ending w/ -ing)", "Verb (ending w/ -ing)"]
-                },
-                {
-                    "text": `I wish you would * back from that * my friend. You could * with all the * that you've been * in. And if you do not want to * me again, I would understand, I would understand`,
-                    "blanks": ["Verb", "Noun", "Verb", "Noun (plural)", "Verb (ending w/ -ing)", "Verb"]
-                }
-            ]
+                    "text": "",
+                    "blanks": []
+                }]
         }
 
-        let storyNumber = Math.floor((Math.random() * stories.story.length));
-        stories.story[storyNumber].blanks.forEach(addWord);
+        function generateTemplate(templateText) {
+            let theTemplate = templateText.split(" ");
+            theTemplate.forEach(element => extractBlanks(element));
+            theTemplate.forEach((element, index) => theTemplate[index] = createText(element));
+
+            stories.story[0].text = theTemplate.join([' ']);
+            stories.story[0].blanks.forEach(addWord);
+        }
+
+        function extractBlanks(arrayElement) {
+            if (arrayElement.startsWith("[") && arrayElement.endsWith("]")){
+                stories.story[0].blanks.unshift(arrayElement.substring(1, arrayElement.length - 1));
+            }
+        }
+        function createText(arrayElement) {
+            if (arrayElement.startsWith("[") && arrayElement.endsWith("]")) {
+                return "*";
+            }
+            return arrayElement;
+        }
 
         function addWord(item, index) {
             document.getElementById("madwords").innerHTML += `

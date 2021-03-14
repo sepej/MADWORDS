@@ -45,6 +45,12 @@ namespace madwords.Repos
 
         public void DeleteBlogPost(BlogPost post)
         {
+            // First delete the comments
+            var comments = post.BlogPostComments.ToList();
+            foreach (BlogPostComment c in comments)
+            {
+                DeleteBlogPostComment(c);
+            }
             context.BlogPosts.Attach(post);
             context.BlogPosts.Remove(post);
             context.SaveChanges();
@@ -74,6 +80,12 @@ namespace madwords.Repos
             var blogposts = context.BlogPosts.Where(p => p.Author.Id == id).ToList();
             foreach (BlogPost b in blogposts)
             {
+                // First delete the comments
+                var comments = b.BlogPostComments.ToList();
+                foreach (BlogPostComment c in comments)
+                {
+                    DeleteBlogPostComment(c);
+                }
                 context.BlogPosts.Attach(b);
                 context.BlogPosts.Remove(b);
                 context.SaveChanges();

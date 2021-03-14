@@ -4,7 +4,7 @@
 // Write your JavaScript code.
 
 $("#submitbtn").on("click", function () {
-    var completedMadword = stories.story[storyNumber].text;
+    var completedMadword = stories.story[0].text;
     $('.word').each(function () {
         completedMadword = completedMadword.replace('*', this.value);
     });
