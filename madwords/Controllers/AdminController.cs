@@ -57,6 +57,14 @@ namespace madwords.Controllers
             if (user != null)
             {
                 // Delete everything from the user
+                var madwords = (from r in madwordRepo.Madwords
+                                where r.Author.Id == id
+                                select r).ToList();
+                foreach (Madword m in madwords)
+                {
+                    madwordRepo.DeleteMadword(m);
+                }
+
                 madwordRepo.DeleteUsersComments(user.Id);
                 madwordRepo.DeleteUsersRatings(user.Id);
                 madwordRepo.DeleteUsersMadwords(user.Id);
@@ -184,6 +192,26 @@ namespace madwords.Controllers
                            where r.Reported == true
                            select r).ToList();
             return View(madword);
+        }
+
+        public IActionResult AddMadwordTemplate()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddMadwordTemplate(MadwordTemplate model)
+        {
+            if (ModelState.IsValid)
+            {
+                model.Author = userManager.GetUserAsync(User).Result;
+                //model.Author.Name = model.Author.UserName;
+                model.MadwordTemplateDate = DateTime.Now;
+                // Store the model in the database
+                madwordRepo.AddMadwordTemplate(model);
+                return Redirect("/Admin");
+            }
+            return View();
         }
     }
 }

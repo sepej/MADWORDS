@@ -99,3 +99,4 @@ Y:\Documents\College\Winter 2021\CS 296N Web Development 2 ASP.NET\Term Project\
 Y:\Documents\College\Winter 2021\CS 296N Web Development 2 ASP.NET\Term Project\madwords\obj\Debug\netcoreapp3.1\Razor\Views\Home\Comment.cshtml.g.cs
 Y:\Documents\College\Winter 2021\CS 296N Web Development 2 ASP.NET\Term Project\madwords\obj\Debug\netcoreapp3.1\Razor\Views\Admin\AddBlogPost.cshtml.g.cs
 Y:\Documents\College\Winter 2021\CS 296N Web Development 2 ASP.NET\Term Project\madwords\obj\Debug\netcoreapp3.1\Razor\Views\Admin\ReportedMadwords.cshtml.g.cs
+Y:\Documents\College\Winter 2021\CS 296N Web Development 2 ASP.NET\Term Project\madwords\obj\Debug\netcoreapp3.1\Razor\Views\Admin\AddMadwordTemplate.cshtml.g.cs

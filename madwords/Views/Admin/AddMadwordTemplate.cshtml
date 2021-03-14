@@ -1,0 +1,31 @@
+﻿@model MadwordTemplate
+@{
+   ViewData["Title"] = "MADWORDS - Make a MADWORD template";
+}
+
+<div class="text-center">
+    <h1 class="jumbotron">Make a MADWORD template</h1>
+    <form method="post" class="container">
+        <div class="row p-2 text-justify">
+            <label asp-for="MadwordTemplateTitle" class="control-label col-sm-3 col-md-1">Title</label>
+            <input asp-for="MadwordTemplateTitle" class="form-control col-sm-9 col-md-11" />
+        </div>
+        <div class="row p-2 text-justify">
+            <label asp-for="MadwordTemplateText" class="control-label col-sm-3 col-md-1">Text</label>
+            <textarea asp-for="MadwordTemplateText" class="form-control col-sm-9 col-md-11"></textarea>
+        </div>
+
+        <div class="row p-2">
+            <div class="col-10"></div>
+            <button type="submit" class="form-control btn btn-success col-2">Submit</button>
+        </div>
+    </form>
+    @if (Model != null)
+    {
+        <div class="container mt-3 shadow p-5 text-left">
+            <h4>@Model.MadwordTemplateTitle</h4>
+            <p><small>@Model.MadwordTemplateDate</small></p>
+            <p><strong>Story: </strong>@Model.MadwordTemplateText</p>
+        </div>
+    }
+    </div>

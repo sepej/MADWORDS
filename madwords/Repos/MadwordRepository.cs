@@ -28,6 +28,20 @@ namespace madwords.Repos
             }
         }
 
+        public IQueryable<MadwordTemplate> MadwordTemplates
+        {
+            get
+            {
+                return context.MadwordTemplates.Include(madword => madword.Author);
+            }
+        }
+
+        public void AddMadwordTemplate(MadwordTemplate template)
+        {
+            context.MadwordTemplates.Add(template);
+            context.SaveChanges();
+        }
+
         public void AddMadword(Madword madword)
         {
             context.Madwords.Add(madword);
@@ -36,6 +50,12 @@ namespace madwords.Repos
 
         public void DeleteMadword(Madword madword)
         {
+            // First delete the comments
+            var comments = madword.Comments.ToList();
+            foreach (Comment c in comments)
+            {
+                DeleteComment(c);
+            }
             context.Madwords.Attach(madword);
             context.Madwords.Remove(madword);
             context.SaveChanges();
@@ -81,6 +101,12 @@ namespace madwords.Repos
             var madwords = context.Madwords.Where(c => c.Author.Id == id).ToList();
             foreach (Madword m in madwords)
             {
+                // First delete the comments
+                var comments = m.Comments.ToList();
+                foreach(Comment c in comments)
+                {
+                    DeleteComment(c);
+                }
                 context.Madwords.Attach(m);
                 context.Madwords.Remove(m);
                 context.SaveChanges();

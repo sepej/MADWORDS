@@ -15,5 +15,6 @@ namespace madwords.Models
         /// </summary>
         public DbSet<BlogPost> BlogPosts { get; set; }
         public DbSet<BlogPostComment> BlogPostComments { get; set; }
+        public DbSet<MadwordTemplate> MadwordTemplates { get; set; }
     }
 }
