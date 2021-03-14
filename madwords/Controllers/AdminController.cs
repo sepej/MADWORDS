@@ -56,6 +56,7 @@ namespace madwords.Controllers
             AppUser user = await userManager.FindByIdAsync(id);
             if (user != null)
             {
+                // Delete everything from the user
                 madwordRepo.DeleteUsersComments(user.Id);
                 madwordRepo.DeleteUsersRatings(user.Id);
                 madwordRepo.DeleteUsersMadwords(user.Id);
