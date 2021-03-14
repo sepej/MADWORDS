@@ -6,6 +6,19 @@
 <div class="text-center">
     <h1 class="jumbotron">Make a MADWORD template</h1>
     <form method="post" class="container">
+        <div class="text-left">
+            <h3>Rules for creating a template</h3>
+            <ul>
+                <li>Add [WordType] where you would like to have a user fill in a blank.</li>
+                <li>Make sure [WordType] isn't followed by punctuation.<br />If you want punctuation, make sure there is a space next before [ and after ], example: "[Noun] ."</li>
+                <li>There cannot be any spaces within [WordType], example: [Verb_ending_in_-ing]</li>
+            </ul>
+            Examples:
+            <ul>
+                <li>"A little [Noun] told me."</li>
+                <li>"A eye for an [Noun] , A tooth for a [Noun] ."</li>
+            </ul>
+        </div>
         <div class="row p-2 text-justify">
             <label asp-for="MadwordTemplateTitle" class="control-label col-sm-3 col-md-1">Title</label>
             <input asp-for="MadwordTemplateTitle" class="form-control col-sm-9 col-md-11" />
