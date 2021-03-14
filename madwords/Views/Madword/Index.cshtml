@@ -1,0 +1,104 @@
+﻿@model List<Madword>
+
+@{ ViewData["Title"] = "MADWORDS"; }
+
+@if (Model.Count != 0)
+{
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item pr-3">
+                    <a asp-action="Index" class="nav-link active">All<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a asp-action="TopRated" class="nav-link">Top Rated<span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+            <form method="post" class="form-inline my-2 my-lg-0">
+                <label for="madwordSearch" class="control-label" hidden>Title</label>
+                <input class="form-control mr-sm-2" type="search" name="madwordSearch" placeholder="Search for title, author, or text" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+}
+
+@foreach (Madword madword in Model)
+{        
+<div class="container mt-3 shadow p-5 text-left">
+    <div class="d-flex">
+        <div class="flex-grow-1"><h3><a asp-controller="Madword" asp-action="Madword" asp-route-id="@madword.MadwordID">@madword.MadwordTitle</a></h3></div>
+        <div class="">
+            @if (User.Identity.Name != @madword.Author.UserName)
+            {
+                @if (madword.Reported != true)
+                {
+                    <a asp-action="ReportMadword" asp-route-madwordId="@madword.MadwordID" class="btn btn-warning btn-sm">Report</a>
+                }
+                else
+                {
+                    <span class="alert alert-warning mr-3" role="alert">
+                        This MADWORD has been reported to the Admins
+                    </span>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a asp-action="RemoveReport" asp-route-madwordId="@madword.MadwordID" class="btn btn-warning btn-sm">Remove Report</a>
+                    }
+                }
+            }
+            @if (User.IsInRole("Admin") || User.Identity.Name == @madword.Author.UserName)
+            {
+                <a asp-action="Delete" asp-route-madwordId="@madword.MadwordID" class="btn btn-danger btn-sm">Delete</a>
+            }
+        </div>
+    </div>
+
+
+    <p><strong>@madword.Author.Name</strong> <small>@madword.MadwordDate</small></p>
+    <p class="p-3 fs-2"><strong>@madword.MadwordText</strong></p>
+    <p>
+        @madword.Ratings.Count @if (madword.Ratings.Count == 1)
+        {<span>vote</span> }
+        else
+        { <span>votes</span>}
+    </p>
+    <p>@TempData["message"]</p>
+    <a asp-action="Vote" asp-route-madwordId="@madword.MadwordID" class="btn btn-success btn-sm">Vote</a>
+    <a asp-action="Comment" asp-route-madwordId="@madword.MadwordID" class="btn btn-primary btn-sm">Comment</a>
+
+    @if (madword.Comments.Count > 0)
+    {<br /><br />
+        <p>
+            @madword.Comments.Count @if (madword.Comments.Count == 1)
+            {
+                <span>comment</span>
+            }
+            else
+            {
+                <span>comments</span>
+            }
+        </p>
+        @foreach (Comment comment in madword.Comments)
+        {
+            @if (@comment.Commenter != null)
+            {
+                <strong>@comment.Commenter.Name</strong> <small>@comment.CommentDate.Date</small>
+                <p>@comment.CommentText</p>
+            }
+        }
+
+    }
+
+</div>
+}
+
+@if (Model.Count == 0)
+{
+    <div class="container mt-3 p-5 text-center">
+        <p>Nobody's written a MADWORD yet.</p>
+        <a class="nav-link text-dark" asp-area="" asp-controller="Madword" asp-action="Create"><strong>BE THE FIRST</strong></a>
+    </div>}

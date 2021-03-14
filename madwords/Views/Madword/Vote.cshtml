@@ -1,0 +1,13 @@
+﻿@model RatingVM
+@{
+    ViewData["Title"] = "Vote";
+}
+<div class="mx-auto text-center" style="width: 500px">
+    <h3>Are you sure you want to vote for this MADWORD?</h3>
+    <small>You can only vote for this MADWORD once</small>
+    <br />
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <form method="post" class="container">
+            <button type="submit" class="form-control btn btn-success">VOTE</button>
+    </form>
+</div>

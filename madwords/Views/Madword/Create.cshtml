@@ -1,0 +1,102 @@
+﻿@model Madword
+
+@{
+    var random = new Random();
+    string[] write = { "Write", "Scribble", "Create", "Compose", "Sling", "Shoot", "Journal", "Ink", "Jot down", "Sign", "Scrawl" };
+    string writeTitle = write[random.Next(write.Length)];
+
+    ViewData["Title"] = writeTitle + " some MADWORD";
+}
+
+<div class="text-center">
+    @if (Model != null)
+    {
+        <h1 class="jumbotron">Your MADWORD</h1>
+        <div>
+            <h3>@Model.MadwordTitle</h3>
+            <p><strong>@Model.MadwordText</strong></p>
+            <p>By @Model.Author.Name</p>
+            <p><small>@Model.MadwordDate</small></p>
+        </div>
+
+        <div class="container mt-3 p-5 text-center">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Madword" asp-action="Create"><strong>MAKE MORE WORD</strong></a>
+        </div>
+    }
+    else
+    {
+        <h1 class="jumbotron">@ViewData["Title"]</h1>
+
+        <form method="post">
+            <div class="row p-2 text-justify">
+                <div class="col-sm-3 my-1">
+                    <h3>MADWORD</h3>
+                </div>
+            </div>
+            <div class="form-row align-items-center" id="madwords">
+
+            </div>
+            <div class="row p-2 text-justify">
+                <div class="col-sm-6 my-1">
+                    <h3>Title</h3>
+                    <p>Title your MADWORD based on the words you entered.</p>
+                    <input asp-for="MadwordTitle" class="form-control col-sm-9 col-md-11 titleword" id="Title" placeholder="" required />
+                </div>
+            </div>
+            <div class="row p-2 text-justify">
+                <div class="col-sm-3 my-1">
+                    <button type="submit" class="btn btn-primary" id="submitbtn">Submit</button>
+                </div>
+            </div>
+            <input asp-for="MadwordText" type="text" id="words" hidden />
+        </form>
+    }
+</div>
+
+
+@section Scripts
+{
+    <script>
+        var stories = {
+            "story": [
+                {
+                    "text": "Somebody once told me the * is gonna * me, I ain't the * * in the *, She was looking kind of * with her * and her * in the shape of a * on her *",
+                    "blanks": ["Noun", "Verb", "Adjective", "Noun", "Place", "Adjective", "Noun", "Noun", "Letter", "Noun"]
+                },
+                {
+                    "text": `* the *-nosed * had a very * nose, And if you ever * it, You would even say it glows, All of the other * used to * and call him *, They never let * * * in any * games`,
+                    "blanks": ["Name", "Adjective", "Noun", "Adjective", "Verb", "Noun", "Verb", "Noun", "Adjective", "Name", "Verb", "Adjective"]
+                },
+                {
+                    "text": `The majestic * has roamed the forests of * for thousands of years. Today, it wanders in search of *. It must find * to survive the harsh *.`,
+                    "blanks": ["Animal", "Country", "Noun", "Noun", "Season"]
+                },
+                {
+                    "text": `He was a *, She was a *. Can I make it any more obvious? He was a *, She did *. What more can I say? He wanted *, She'd never tell. Secretly she * * as well. But all of her *, Stuck up their *, They had a problem with his * *.`,
+                    "blanks": ["Noun", "Noun", "Noun", "Sport", "Noun", "Verb (past tense)", "Noun", "Noun", "Noun", "Adjective", "Noun (plural)"]
+                },
+                {
+                    "text": `All the * *, true care truth brings. I'll * one *. Your *, * *. Always I know, you'll be at my *. *, *, *`,
+                    "blanks": ["Adjective", "Noun (plural)", "Verb", "Noun", "Noun", "Adjective", "Noun", "Place", "Verb (ending w/ -ing)", "Verb (ending w/ -ing)", "Verb (ending w/ -ing)"]
+                },
+                {
+                    "text": `I wish you would * back from that * my friend. You could * with all the * that you've been * in. And if you do not want to * me again, I would understand, I would understand`,
+                    "blanks": ["Verb", "Noun", "Verb", "Noun (plural)", "Verb (ending w/ -ing)", "Verb"]
+                }
+            ]
+        }
+
+        let storyNumber = Math.floor((Math.random() * stories.story.length));
+        stories.story[storyNumber].blanks.forEach(addWord);
+
+        function addWord(item, index) {
+            document.getElementById("madwords").innerHTML += `
+            <div class="col-sm-3 my-1">
+                <label>${item}</label>
+                <input type="text" class="form-control word" placeholder="" required>
+            </div>
+            `;
+        }
+
+    </script>
+}
