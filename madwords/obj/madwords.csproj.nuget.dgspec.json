@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "Y:\\Documents\\College\\Winter 2021\\CS 296N Web Development 2 ASP.NET\\Term Project\\madwords\\madwords.csproj": {}
+    "Y:\\Documents\\College\\Winter 2021\\CS 296N Web Development 2 ASP.NET\\New Term Project\\MADWORDS\\madwords\\madwords.csproj": {}
   },
   "projects": {
-    "Y:\\Documents\\College\\Winter 2021\\CS 296N Web Development 2 ASP.NET\\Term Project\\madwords\\madwords.csproj": {
+    "Y:\\Documents\\College\\Winter 2021\\CS 296N Web Development 2 ASP.NET\\New Term Project\\MADWORDS\\madwords\\madwords.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "Y:\\Documents\\College\\Winter 2021\\CS 296N Web Development 2 ASP.NET\\Term Project\\madwords\\madwords.csproj",
+        "projectUniqueName": "Y:\\Documents\\College\\Winter 2021\\CS 296N Web Development 2 ASP.NET\\New Term Project\\MADWORDS\\madwords\\madwords.csproj",
         "projectName": "madwords",
-        "projectPath": "Y:\\Documents\\College\\Winter 2021\\CS 296N Web Development 2 ASP.NET\\Term Project\\madwords\\madwords.csproj",
+        "projectPath": "Y:\\Documents\\College\\Winter 2021\\CS 296N Web Development 2 ASP.NET\\New Term Project\\MADWORDS\\madwords\\madwords.csproj",
         "packagesPath": "C:\\Users\\Joseph\\.nuget\\packages\\",
-        "outputPath": "Y:\\Documents\\College\\Winter 2021\\CS 296N Web Development 2 ASP.NET\\Term Project\\madwords\\obj\\",
+        "outputPath": "Y:\\Documents\\College\\Winter 2021\\CS 296N Web Development 2 ASP.NET\\New Term Project\\MADWORDS\\madwords\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Joseph\\AppData\\Roaming\\NuGet\\NuGet.Config",

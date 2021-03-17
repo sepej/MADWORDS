@@ -57,7 +57,7 @@ namespace madwords.Models
                 MadwordTemplate template = new MadwordTemplate
                 {
                     MadwordTemplateTitle = "Smash Mouth",
-                    MadwordTemplateText = "Somebody once told me the[Noun] is gonna[Verb] me, I ain't the [Adjective] [Noun] in the [Place] , She was looking kind of [Adjective] with her [Noun] and her [Noun] in the shape of a [Letter] on her [Noun]",
+                    MadwordTemplateText = "Somebody once told me the [Noun] is gonna [Verb] me, I ain't the [Adjective] [Noun] in the [Place] , She was looking kind of [Adjective] with her [Noun] and her [Noun] in the shape of a [Letter] on her [Noun]",
                     MadwordTemplateDate = DateTime.Now,
                 };
                 context.MadwordTemplates.Add(template);

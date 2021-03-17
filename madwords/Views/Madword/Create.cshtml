@@ -60,6 +60,7 @@
         
         var templates = [];
         
+        //fetch('https://madwords.donttelljoseph.com/api/MadwordTemplate')
         fetch('https://localhost:44380/api/MadwordTemplate')
             .then(response => {
                 const contentType = response.headers.get('content-type');
@@ -96,7 +97,7 @@
 
         function extractBlanks(arrayElement) {
             if (arrayElement.startsWith("[") && arrayElement.endsWith("]")){
-                stories.story[0].blanks.unshift(arrayElement.substring(1, arrayElement.length - 1));
+                stories.story[0].blanks.push(arrayElement.substring(1, arrayElement.length - 1));
             }
         }
         function createText(arrayElement) {

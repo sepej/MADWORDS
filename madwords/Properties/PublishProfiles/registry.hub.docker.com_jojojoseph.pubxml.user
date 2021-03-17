@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA41AKXo8evU66xjZDTWLIfQAAAAACAAAAAAAQZgAAAAEAACAAAACo+sE1imXV/6nkma/zigdAgOHh9pQ4AR1pcnUd9mpMuAAAAAAOgAAAAAIAACAAAADjqTtLBZaK1G6sXfNqjOZ1denCG25Rl8w8ppNjNwfwdDAAAADPWj61WGOwjhJhdPnsLEQy3K16SrjJtJ9GWa4J1pINrOO2xn2orweUkQjf0cB5kzFAAAAAKQJOEWf9XMtVtxWcbXDYhcQe3qJC0ZdOimrs5KL3Bvklf6SVIcJkdsKLlwQKVdJ29p59F/cHu7WNLoNmv0uM8Q==</EncryptedPassword>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="SQLServerConnection">
+      <Value>Data Source=192.168.1.21,1433%3bInitial Catalog=madwordsmaster%3bUser Id=sa%3bPassword=mog.gnig%40uw8RAWN%3bMultipleActiveResultSets=True%3b</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+  <ItemGroup>
+    <EFMigrations Include="madwords.Models.MadwordContext">
+      <Value>Data Source=192.168.1.21,1433%3bInitial Catalog=madwordsmaster%3bUser Id=sa%3bPassword=mog.gnig%40uw8RAWN%3bMultipleActiveResultSets=True%3b</Value>
+    </EFMigrations>
+  </ItemGroup>
+</Project>
